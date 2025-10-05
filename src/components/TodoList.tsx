@@ -11,7 +11,6 @@ export default function TodoList(): JSX.Element {
   const [items, setItems] = useState<TodoItem[]>([]);
   const [input, setInput] = useState<string>("");
 
-  // Cargar datos guardados
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -22,7 +21,6 @@ export default function TodoList(): JSX.Element {
     }
   }, []);
 
-  // Guardar cuando cambia la lista
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
@@ -47,9 +45,7 @@ export default function TodoList(): JSX.Element {
     setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
 
   return (
     <section className="max-w-md mx-auto mt-10 p-4 bg-white rounded-2xl shadow-md">
@@ -73,7 +69,7 @@ export default function TodoList(): JSX.Element {
       </form>
 
       {items.length === 0 ? (
-        <p className="text-center text-gray-500">No hay elementos todavía.</p>
+        <p className="text-center text-gray-500">No hay elementos todavía</p>
       ) : (
         <ul className="space-y-2">
           {items.map((item) => (
