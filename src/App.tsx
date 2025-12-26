@@ -1,42 +1,48 @@
 import { useState } from "react";
+import TodoList from "./components/TodoList";
 
-function App() {
-  // Estado del contador
-  const [count, setCount] = useState<number>(0);
-
-  // Función para incrementar
-  const increment = () => setCount((prev) => prev + 1);
-
-  // Función para decrementar (no permite negativos)
-  const decrement = () =>
-    setCount((prev) => (prev > 0 ? prev - 1 : prev));
+export default function App() {
+  const [count, setCount] = useState(0);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-6">Hola Zaitec 🚀</h1>
-      <p className="text-lg mb-4">Contador de la semana 1 — proyecto base</p>
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-start py-12 px-4">
+      {/* Contenedor principal centrado vertical y horizontalmente */}
+      <div className="w-full max-w-6xl flex flex-col items-center space-y-16">
 
-      <div className="flex items-center space-x-4">
-        <button
-          onClick={decrement}
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
-        >
-          −
-        </button>
-        <span className="text-2xl font-semibold">{count}</span>
-        <button
-          onClick={increment}
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
-        >
-          +
-        </button>
+        {/* Hola Mundo - Centrado perfecto */}
+        <div className="text-center w-full">
+          <h1 className="text-6xl font-extrabold text-gray-800 mb-4">
+            Hola Mundo
+          </h1>
+          <p className="text-xl text-gray-600">Proyecto de Prácticas WEB-ZAITEC</p>
+        </div>
+
+        {/* Contador - Centrado perfecto */}
+        <div className="bg-white rounded-3xl shadow-xl p-8 w-full max-w-md text-center hover:scale-105 transform transition duration-200">
+          <h2 className="text-2xl font-semibold mb-6 text-gray-700">Contador - Semana 1</h2>
+          <p className="text-6xl font-mono mb-8 text-gray-800">{count}</p>
+          <div className="flex justify-center gap-6">
+            <button
+              onClick={() => setCount(count - 1)}
+              className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors font-medium"
+            >
+              -
+            </button>
+            <button
+              onClick={() => setCount(count + 1)}
+              className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors font-medium"
+            >
+              +
+            </button>
+          </div>
+        </div>
+
+        {/* TodoList - Centrado forzado */}
+        <div className="w-full flex justify-center">
+          <TodoList />
+        </div>
+
       </div>
-
-      {count === 0 && (
-        <p className="mt-4 text-gray-500">No hay elementos todavía</p>
-      )}
     </div>
   );
 }
-
-export default App;
